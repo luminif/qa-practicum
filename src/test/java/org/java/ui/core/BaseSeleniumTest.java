@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public abstract class BaseSeleniumTest {
@@ -16,7 +17,7 @@ public abstract class BaseSeleniumTest {
     protected Customers customers;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
