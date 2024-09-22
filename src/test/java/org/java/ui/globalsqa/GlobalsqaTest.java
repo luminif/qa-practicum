@@ -15,13 +15,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Feature("Клиенты")
+@Epic("Работа с клиентами")
 public class GlobalsqaTest extends BaseSeleniumTest {
     @Test
     @DisplayName("TC1")
-    @Feature("Клиенты")
     @Story("Добавление клиента")
     @Description("Добавление клиента с заданными данными и проверка его наличия в списке")
-    @Epic("Работа с клиентами")
     public void addCustomer() {
         String postCode = "0734567890";
         String firstName = "hieam";
@@ -33,24 +33,18 @@ public class GlobalsqaTest extends BaseSeleniumTest {
 
     @Test
     @DisplayName("TC2")
-    @Feature("Клиенты")
     @Story("Сортировка клиентов")
     @Description("Проверка сортировки списка клиентов по имени")
-    @Epic("Работа с клиентами")
     public void sortCustomersByFirstName() {
         customers.clickCustomers();
-        System.out.println(customers.getFirstNames());
         customers.sortCustomers();
-        System.out.println(customers.getFirstNames());
         assertTrue(Utils.isSorted(customers.getFirstNames()));
     }
 
     @Test
     @DisplayName("TC3")
-    @Feature("Клиенты")
     @Story("Удаление клиента")
     @Description("Удаление клиента из списка")
-    @Epic("Работа с клиентами")
     public void deleteCustomer() {
         customers.clickCustomers();
         List<String> expected = List.of("Hermoine", "Ron", "Albus", "Neville");
