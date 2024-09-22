@@ -1,5 +1,6 @@
 package org.java.ui.pages;
 
+import io.qameta.allure.Step;
 import org.java.ui.core.BaseSeleniumPage;
 import org.java.ui.utils.Utils;
 import org.openqa.selenium.WebDriver;
@@ -27,15 +28,18 @@ public class Customers extends BaseSeleniumPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Клик по 'Customers'")
     public void clickCustomers() {
         clickCustomers.click();
     }
 
+    @Step("Сортировка клиентов")
     public void sortCustomers() {
         firstNameSort.click();
         firstNameSort.click();
     }
 
+    @Step("Удаление клиентов")
     public void deleteCustomer() {
         Utils.deleteByAverage(getFirstNames(), customerRows);
     }
