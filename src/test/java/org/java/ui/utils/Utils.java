@@ -13,6 +13,12 @@ public class Utils {
 
     }
 
+    /**
+     * Генерирует имя на основе указанного кода.
+     *
+     * @param postCode Код, который будет использоваться для генерации имени.
+     * @return Сгенерированное имя, состоящее из строчных букв.
+     */
     public static String generateFirstName(String postCode) {
         return IntStream.range(0, postCode.length() / 2)
             .mapToObj(i -> postCode.substring(i * 2, i * 2 + 2))
@@ -34,6 +40,12 @@ public class Utils {
         return true;
     }
 
+    /**
+     * Удаляет клиента из списка, имя которого наиболее близко к среднему значению длины имен в списке.
+     *
+     * @param list Список имен клиентов, которые нужно проверить.
+     * @param customerRows Список элементов таблицы, представляющих строки клиентов.
+     */
     public static void deleteByAverage(List<String> list, List<WebElement> customerRows) {
         double averageNameLength = list.stream()
             .mapToInt(String::length)
