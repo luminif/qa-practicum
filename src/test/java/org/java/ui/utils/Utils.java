@@ -3,8 +3,11 @@ package org.java.ui.utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -61,5 +64,12 @@ public class Utils {
                 WebElement deleteCustomer = row.findElement(By.xpath(".//button[contains(text(), 'Delete')]"));
                 deleteCustomer.click();
             });
+    }
+
+    public static String getBaseUrl() throws IOException {
+        Properties props = new Properties();
+        InputStream is = Utils.class.getClassLoader().getResourceAsStream("application.properties");
+        props.load(is);
+        return props.getProperty("base-url");
     }
 }
