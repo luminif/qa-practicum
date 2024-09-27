@@ -1,5 +1,6 @@
 package org.java.ui.utils;
 
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,11 +12,8 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@UtilityClass
 public class Utils {
-    private Utils() {
-
-    }
-
     /**
      * Генерирует имя на основе указанного кода.
      *
@@ -66,10 +64,13 @@ public class Utils {
             });
     }
 
-    public static String getBaseUrl() throws IOException {
-        Properties props = new Properties();
-        InputStream is = Utils.class.getClassLoader().getResourceAsStream("application.properties");
-        props.load(is);
-        return props.getProperty("base-url");
+    public static String getBaseUrl() {
+        try (InputStream is = Utils.class.getClassLoader().getResourceAsStream("application.properties")) {
+            Properties props = new Properties();
+            props.load(is);
+            return props.getProperty("ui-base-url");
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось найти application.properties", e);
+        }
     }
 }
