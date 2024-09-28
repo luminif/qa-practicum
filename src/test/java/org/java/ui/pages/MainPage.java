@@ -8,13 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.IOException;
-
 public class MainPage extends BaseSeleniumPage {
     @FindBy(xpath = "//button[@ng-click='addCust()']")
     private WebElement addCustomer;
 
-    public MainPage(WebDriver driver) throws IOException {
+    public MainPage(WebDriver driver) {
         super(driver);
         driver.get(Utils.getBaseUrl());
         PageFactory.initElements(driver, this);
