@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ApiTest {
     private RequestEntity requestEntity;
     private int id;
-    private static final int unknownId = Integer.MAX_VALUE;
+    private static final int UNKNOWN_ID = Integer.MAX_VALUE;
 
     @BeforeEach
     void setUp() {
@@ -88,11 +88,11 @@ public class ApiTest {
     void getRequestByUnknownId() {
         String message = RestAssured.given()
             .spec(requestSpecification())
-            .get("get/{id}", unknownId)
+            .get("get/{id}", UNKNOWN_ID)
             .then()
             .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
             .extract()
-            .path("error").toString();
+            .path("error");
 
         assertEquals("no rows in result set", message);
     }
@@ -147,7 +147,7 @@ public class ApiTest {
             .extract()
             .response()
             .body()
-            .path("error").toString();
+            .path("error");
 
         assertEquals("title field is required", message);
     }
@@ -186,11 +186,11 @@ public class ApiTest {
         String message = RestAssured.given()
             .spec(requestSpecification())
             .body(requestEntity)
-            .patch("patch/{id}", unknownId)
+            .patch("patch/{id}", UNKNOWN_ID)
             .then()
             .statusCode(HttpStatus.SC_BAD_REQUEST)
             .extract()
-            .path("error").toString();
+            .path("error");
 
         assertEquals("unable to check for existence of such id [no rows in result set]", message);
     }
@@ -218,11 +218,11 @@ public class ApiTest {
         String message = RestAssured.given()
             .spec(requestSpecification())
             .body(requestEntity)
-            .delete("delete/{id}", unknownId)
+            .delete("delete/{id}", UNKNOWN_ID)
             .then()
             .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
             .extract()
-            .path("error").toString();
+            .path("error");
 
         assertEquals("no rows found for this id", message);
     }
